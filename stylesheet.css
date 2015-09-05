@@ -8,6 +8,7 @@
   max-height: 400px;
   line-height: 0;
 }
+
 .splash {
   position: relative;
   width: 100%;
@@ -21,6 +22,9 @@
   width: 50%;
 }
 
+.debugwrap {
+  padding-top: 20px;
+}
 /* .rows {
   width: 50%;
   margin: 0 auto;
