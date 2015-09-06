@@ -54,6 +54,48 @@ function CreateBox() {
       $('.debugwrap').append('<div class="debug"><h4>Debug stuff</h4><p>Number of boxes is '+numBox+'.<br>Number of rows is '+numRows+'.<br>Number of boxes per row is '+numBoxPRow+'.<br>Wrapper dimensions are '+wrapH+'px height and '+wrapW+'px width.</p></div>');
 } /* END OF BOXCREATOR FUNCTION */
 
+/*** HOVER MODES ***/
+
+/* Default hover mode */
+function DefaultMode() {
+  $('.box').on('mouseenter', function() {
+    $(this).addClass('highlighted');
+  });
+}
+
+/* Lighten mode, make all the boxes black and DECREASE OPACITY for each mouseover */
+
+function LightenMode() {
+  $('.box').css({"background-color": "rgb(0, 0, 0)", "border-color": "rgb(0, 0, 0)", "opacity": "1.0" }); // Set everything black
+
+  $('.box').on('mouseenter', function() {
+      $(this).css('opacity', "-=0.1");
+  });
+
+}
+
+/* Set the boxes to random colors on each mouseover */
+function RandomMode() {
+  $('.box').on('mouseenter', function() {
+    var randcolor = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
+    $(this).css({ "background-color": ""+randcolor+"", "border-color": ""+randcolor+"" });
+  });
+}
+
+/* Set the boxes to turn white then fade to white quickly, (really using opacity) COOLMODE */
+
+function CoolMode() {
+  $('.box').css({"background-color": "rgb(0, 0, 0)", "border-color": "rgb(0, 0, 0)", "opacity": "1.0" }); // Set everything black
+
+  $('.box').on('mouseenter', function() {
+      $(this).css({'opacity': "0"});
+  });
+
+  $('.box').on('mouseleave', function() {
+      $(this).animate({'opacity': "1"}, 600);
+  });
+}
+
 /* Hacky CSS reset on the wrapper width */
 var WrapReset = function() {$('.wrapper').css('max-width', '400px');}; /* Hacky as heck, but to prevent the wrapper from slowly expanding if you pick the same gridsize as is already set */
 
@@ -97,49 +139,6 @@ $('#cool').on('click', function() {
   CreateBox();
   CoolMode();
 });
-
-/*** HOVER MODES ***/
-
-/* Default hover mode */
-function DefaultMode() {
-  $('.box').on('mouseenter', function() {
-    $(this).addClass('highlighted');
-  });
-}
-
-/* Lighten mode, make all the boxes black and DECREASE OPACITY for each mouseover */
-
-function LightenMode() {
-  $('.box').css({"background-color": "rgb(0, 0, 0)", "border-color": "rgb(0, 0, 0)", "opacity": "1.0" }); // Set everything black
-
-  $('.box').on('mouseenter', function() {
-      $(this).css('opacity', "-=0.1");
-  });
-
-}
-
-/* Set the boxes to random colors on each mouseover */
-function RandomMode() {
-  $('.box').on('mouseenter', function() {
-    var randcolor = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
-    $(this).css({ "background-color": ""+randcolor+"", "border-color": ""+randcolor+"" });
-  });
-}
-
-/* Set the boxes to turn white then fade to white quickly, (really using opacity) COOLMODE */
-
-function CoolMode() {
-  $('.box').css({"background-color": "rgb(0, 0, 0)", "border-color": "rgb(0, 0, 0)", "opacity": "1.0" }); // Set everything black
-
-  $('.box').on('mouseenter', function() {
-      $(this).css({'opacity': "0"});
-  });
-
-  $('.box').on('mouseleave', function() {
-      $(this).animate({'opacity': "1"}, 600);
-  });
-}
-
 
 /*** DEFAULT BEHAVIOR/ON LOAD ***/
 CreateBox(); /* Call the function once to set up default page */
