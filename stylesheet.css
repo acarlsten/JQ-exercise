@@ -25,6 +25,7 @@
 .debugwrap {
   padding-top: 20px;
 }
+
 /* .rows {
   width: 50%;
   margin: 0 auto;
@@ -36,6 +37,10 @@
   float: left;
 }
 
+.highlighted {
+  background-color: rgb(68, 180, 235);
+  border-color: rgb(68, 180, 235);
+}
 .debug {
   line-height: normal;
 }
